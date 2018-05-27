@@ -249,15 +249,28 @@ class Health_Check_Troubleshoot {
 
 		?>
 		<div class="notice inline">
+
+		<?php if ( class_exists( 'Health_Check_Troubleshooting_MU' ) && Health_Check_Troubleshooting_MU::is_troubleshooting() ) : ?>
+
+			<p style="text-align: center;">
+				<a type="submit" class="button button-primary" href="<?php echo esc_url( add_query_arg( array( 'health-check-disable-troubleshooting' => true ) ) ); ?>">
+					<?php esc_html_e( 'Disable Troubleshooting Mode', 'health-check' ); ?>
+				</a>
+			</p>
+
+		<?php else : ?>
+
 			<form action="" method="post" class="form" style="text-align: center;">
 				<input type="hidden" name="health-check-troubleshoot-mode" value="true">
-
 				<p>
 					<button type="submit" class="button button-primary">
 						<?php esc_html_e( 'Enable Troubleshooting Mode', 'health-check' ); ?>
 					</button>
 				</p>
 			</form>
+
+		<?php endif; ?>
+
 		</div>
 
 		<?php
